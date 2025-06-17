@@ -2,7 +2,7 @@ import "./MovieCard.css";
 import {useState} from 'react'
 import eyeIcon from '../../assets/eye.png'
 
-const MovieCard = ({title, key, imgPath, voterAvg}) => {
+const MovieCard = ({title, key, imgPath, voterAvg, openModal}) => {
 const [liked, setLiked] = useState(false);
 const [viewed, setViewed] = useState(false);
 
@@ -25,10 +25,16 @@ const [viewed, setViewed] = useState(false);
         cursor: 'pointer',
     };
 
+    const handleClick = (e) => {
+        if(!e.target.classList.contains("heart-icon") && !e.target.classList.contains("viewIcon")) {
+            openModal();
+        }
+    }
+
 
     return (
         <>
-            <div className="movie-item">
+            <div className="movie-item" onClick={handleClick}>
                 <p>{title}</p>
                 <img src={`https://image.tmdb.org/t/p/w500${imgPath}`} alt={title}/>
                 <p>{voterAvg}</p>
@@ -40,8 +46,13 @@ const [viewed, setViewed] = useState(false);
                     )}
                 </button>
 
+   {/* tile.addEventListener("click", (e) => {
+      if (!e.target.classList.contains("heart-icon")) {
+        openModal(pl);
+      }
+    }); */}
                 <button className="viewButton" onClick={toggleView}>
-                    <img style={viewStyle} src={eyeIcon}/>
+                    <img className="viewIcon" style={viewStyle} src={eyeIcon}/>
                 </button>
             </div>
         </>

@@ -2,12 +2,12 @@ import {useState, useEffect} from 'react';
 import axios from "axios";
 import MovieCard from '../MovieCard/MovieCard';
 import "./MovieList.css";
+import MovieModal from '../MovieModal/MovieModal';
 
 const MovieList = ({searchQuery, movieList, setMoviesMethod}) => {
     const[movies, setMovies] = useState([])
-    // const[selectedMovies, setSelectedMovie] = useState(null);
-    //modal needs runtime, backdrop poster, release date, genre, and overview
-    // const[showModal, setShowModal] = useState(false);
+    const[selectedMovie, setSelectedMovie] = useState(null);
+    const[showModal, setShowModal] = useState(false);
     // const[pageVal, setPageVal] = useState(1);
     const apiKey = import.meta.env.VITE_API_KEY
 
@@ -40,6 +40,27 @@ const MovieList = ({searchQuery, movieList, setMoviesMethod}) => {
     }
     }, [searchQuery, apiKey]);
 
+    const handleCardClick = async (id) => {
+        console.log("movie is being clicked");
+        setShowModal(true);
+        setSelectedMovie(null);
+
+        try {
+            // there may be an error here
+            const {data} = await axios.get(`https://api.themoviedb.org/3/movie/${id}?api_key=${apiKey}`)
+        setSelectedMovie(data);
+        console.log("selected movie: " + data);
+        } catch (err) {
+            console.error(`Error fetching`, err);
+        }
+
+    };
+
+    const handleClose = () => {
+        setShowModal(false);
+        setSelectedMovie(null);
+    };
+
 
     return (
         <>
@@ -50,10 +71,17 @@ const MovieList = ({searchQuery, movieList, setMoviesMethod}) => {
                         title={m.title}
                         imgPath={m.poster_path}
                         voterAvg={m.vote_average}
+                        openModal={() => handleCardClick(m.id)}
                     />
                 ))}
                 <button>LOAD MORE</button>
             </div>
+
+            <MovieModal 
+                show={showModal}
+                onClose={handleClose}
+                movie={selectedMovie}
+                />
         </>
     );
 };
