@@ -19,7 +19,7 @@ const App = () => {
   return (
     <div className="App">
       <div className="App-header">
-          <h1>FLIXSTER</h1>
+          <h1> <a href="App.jsx">FLIXSTER</a></h1>
           <SearchBar
             currSearch={searchQuery}
             setCurrSearch={setSearchQuery}
@@ -41,6 +41,8 @@ const App = () => {
             page={page}
             setPage={setPage}
         />
+
+        <footer id="footerText"> <p>&copy; Made By Janine Jimenez</p></footer>
       </main>
       
     </div>
