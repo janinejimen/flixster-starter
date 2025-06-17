@@ -10,8 +10,6 @@ const App = () => {
   const [movies, setMovies] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
 
-    console.log("movies in app: " + movies);
-
   return (
     <div className="App">
       <div className="App-header">
@@ -24,10 +22,16 @@ const App = () => {
       </div>
 
       <main>
-        <Sorting/>
+        <Sorting
+          movieList={movies}
+          setMovies={setMovies}
+          />
         <MovieList
             searchQuery={searchQuery}
+            movieList={movies}
+            setMoviesMethod={setMovies}
         />
+        <button>load more</button>
       </main>
       
     </div>

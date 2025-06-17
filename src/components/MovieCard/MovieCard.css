@@ -11,7 +11,21 @@
     width: 300px;
 }
 
+.like-button img {
+width: 24px;
+height: 24px;
+}
+
 .movie-item img {
     height: 300px;
     width: 200px;
+}
+
+.movie-item button img {
+    height: 20px;
+    width: 20px;
+}
+
+.movie-item button {
+    background-color: rgb(194, 194, 194);
 }

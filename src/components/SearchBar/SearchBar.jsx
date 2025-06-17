@@ -18,10 +18,17 @@ const SearchBar = ({currSearch, setCurrSearch}) => {
         setSearch('');
     };
 
+    const handleEnter = (event) => {
+        console.log("enter key pressed");
+        if(event.key === 'Enter') {
+            searchClick();
+        }
+    }
+
     return (
         <>
             <div className="search-div">
-                <input type="text" placeholder="Search" value={search} onChange={updateSearch} className="search-bar"/>
+                <input type="text" onKeyDown={handleEnter} placeholder="Search" value={search} onChange={updateSearch} className="search-bar"/>
                 <button className="search-button" onClick={searchClick}>SEARCH</button>
                 <button className="clear-button" onClick={clearClick}>CLEAR</button>
             </div>
