@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import './SearchBar.css'
 
-const SearchBar = ({currSearch, setCurrSearch}) => {
+const SearchBar = ({currSearch, setCurrSearch, page, setPage}) => {
 
     const [search, setSearch] = useState('');
 
@@ -10,10 +10,16 @@ const SearchBar = ({currSearch, setCurrSearch}) => {
     };
 
     const searchClick = () => {
+        if(page != 1) {
+            setPage(1);
+        }
         setCurrSearch(search);
     };
 
     const clearClick = () => {
+        if(page != 1) {
+            setPage(1);
+        }
         setCurrSearch('');
         setSearch('');
     };

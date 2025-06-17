@@ -5,24 +5,26 @@ import MovieCard from '../MovieCard/MovieCard';
 import "./MovieList.css";
 import MovieModal from '../MovieModal/MovieModal';
 
-const MovieList = ({filterQuery, searchQuery}) => {
+const MovieList = ({filterQuery, searchQuery, page, setPage}) => {
     const[movies, setMovies] = useState([])
     const[selectedMovie, setSelectedMovie] = useState(null);
     const[showModal, setShowModal] = useState(false);
-    const[page, setPage] = useState(1);
-    const apiKey = import.meta.env.VITE_API_KEY
+    // const[page, setPage] = useState(1);
 
 
     useEffect ( () => {
-
-
+    const apiKey = import.meta.env.VITE_API_KEY
 
     const fetchList = async() => {
             try {
                 const { data } = await axios.get(
                     `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&sort_by=${filterQuery}&include_adult=false&page=${page}`
                 );
-                setMovies(data.results);
+                if(page >1) {
+                setMovies(prevMovies => [...prevMovies, ...data.results]);
+                } else {
+                    setMovies(data.results);
+                }
             } catch (err) {
                 console.error("Error fetching the list: ", err);
             }
@@ -32,7 +34,12 @@ const MovieList = ({filterQuery, searchQuery}) => {
         const searchMovies = async (query) => {
         try {
             const {data} = await axios.get( `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${query}&include_adult=false&page=${page}`);
-            setMovies(data.results);
+
+            if(page >1) {
+                setMovies(prevMovies => [...prevMovies, ...data.results]);
+                } else {
+                    setMovies(data.results);
+                }
         } catch(err) {
             console.error("error has occurred: ", err);
         }
@@ -43,7 +50,7 @@ const MovieList = ({filterQuery, searchQuery}) => {
     } else {
         fetchList();
     }
-    }, [filterQuery,searchQuery, apiKey]);
+    }, [filterQuery,searchQuery,page]);
 
     const handleCardClick = async (id) => {
         console.log("movie is being clicked");
@@ -51,8 +58,7 @@ const MovieList = ({filterQuery, searchQuery}) => {
         setSelectedMovie(null);
 
         try {
-            // https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${encodeURIComponent(query)}&page=${page}
-            const {data} = await axios.get(`https://api.themoviedb.org/3/movie/${id}?api_key=${apiKey}`)
+            const {data} = await axios.get(`https://api.themoviedb.org/3/movie/${id}?api_key=${apiKey}&page=${page}`)
         setSelectedMovie(data);
         } catch (err) {
             console.error(`Error fetching`, err);
@@ -64,6 +70,13 @@ const MovieList = ({filterQuery, searchQuery}) => {
         setShowModal(false);
         setSelectedMovie(null);
     };
+
+    const handleLoadMore = () => {
+        let pageUpdate = page;
+        pageUpdate += 1;
+        setPage(pageUpdate);
+        
+    }
 
 
     return (
@@ -87,7 +100,7 @@ const MovieList = ({filterQuery, searchQuery}) => {
                 movie={selectedMovie}
                 />
 
-                {/* <button onClick={setPage(page+1)}>LOAD MORE</button> */}
+                <button onClick={handleLoadMore}>LOAD MORE</button>
         </>
     );
 };

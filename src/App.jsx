@@ -10,6 +10,7 @@ const App = () => {
   const [movies, setMovies] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
   const [filterQuery, setFilterQuery] = useState('popularity.desc');
+  const [page, setPage] = useState(1);
 
   const handleSortChange = (e) => {
     setFilterQuery(e.target.value);
@@ -22,6 +23,8 @@ const App = () => {
           <SearchBar
             currSearch={searchQuery}
             setCurrSearch={setSearchQuery}
+            page={page}
+            setPage={setPage}
           />
           
       </div>
@@ -35,6 +38,8 @@ const App = () => {
         <MovieList
             filterQuery={filterQuery}
             searchQuery={searchQuery}
+            page={page}
+            setPage={setPage}
         />
       </main>
       
