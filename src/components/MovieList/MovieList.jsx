@@ -7,8 +7,7 @@ const MovieList = ({searchQuery}) => {
     const[selectedMovies, setSelectedMovie] = useState(null);
     const[showModal, setShowModal] = useState(false);
 
-    useEffect ( () => {
-        const fetchList = async() => {
+    const fetchList = async() => {
             const apiKey = import.meta.env.VITE_API_KEY
             try {
                 const { data } = await axios.get(
@@ -19,6 +18,8 @@ const MovieList = ({searchQuery}) => {
                 console.error("Error fetching the list: ", err);
             }
         };
+
+    useEffect ( () => {
         fetchList();
     }, []);
 
@@ -35,6 +36,8 @@ const MovieList = ({searchQuery}) => {
 
     if(searchQuery) {
         filterMovies(searchQuery);
+    } else {
+        fetchList();
     }
     }, [searchQuery]);
    
