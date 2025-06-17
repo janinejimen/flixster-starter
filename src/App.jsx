@@ -9,6 +9,12 @@ const App = () => {
 
   const [movies, setMovies] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
+  const [filterQuery, setFilterQuery] = useState('popularity.desc');
+
+  const handleSortChange = (e) => {
+    console.log("e is:" , e.target.value)
+    setFilterQuery(e.target.value);
+  }
 
   return (
     <div className="App">
@@ -25,13 +31,12 @@ const App = () => {
         <Sorting
           movieList={movies}
           setMovies={setMovies}
+          onChange={handleSortChange}
           />
         <MovieList
+            filterQuery={filterQuery}
             searchQuery={searchQuery}
-            movieList={movies}
-            setMoviesMethod={setMovies}
         />
-        <button>load more</button>
       </main>
       
     </div>

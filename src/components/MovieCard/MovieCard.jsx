@@ -46,11 +46,6 @@ const [viewed, setViewed] = useState(false);
                     )}
                 </button>
 
-   {/* tile.addEventListener("click", (e) => {
-      if (!e.target.classList.contains("heart-icon")) {
-        openModal(pl);
-      }
-    }); */}
                 <button className="viewButton" onClick={toggleView}>
                     <img className="viewIcon" style={viewStyle} src={eyeIcon}/>
                 </button>
