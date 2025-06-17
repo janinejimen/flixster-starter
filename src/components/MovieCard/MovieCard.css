@@ -4,7 +4,7 @@
     align-items: center;
     background: #ffffff;
     border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.383);
     padding: 1rem;
     cursor: pointer;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
@@ -21,10 +21,23 @@ height: 24px;
     width: 200px;
 }
 
+.buttonsDiv {
+    justify-content: space-around;
+    width: 100%;
+}
+
 .movie-item button img {
     height: 20px;
     width: 20px;
 }
 .movie-item button {
     background-color: rgb(194, 194, 194);
+    border:none;
+    width: 100px;
+    height: 30px;
+}
+
+.viewButton {
+    background-color: rgb(187, 187, 187);
+    border:none;
 }

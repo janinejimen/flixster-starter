@@ -6,11 +6,13 @@ const MovieCard = ({title, key, imgPath, voterAvg, openModal}) => {
 const [liked, setLiked] = useState(false);
 const [viewed, setViewed] = useState(false);
 
-    const toggleLike = () => {
+    const toggleLike = (e) => {
+        e.stopPropagation();
         setLiked(!liked);
     };
 
-    const toggleView = () => {
+    const toggleView = (e) => {
+        e.stopPropagation();
         setViewed(!viewed);
     }
 
@@ -35,9 +37,10 @@ const [viewed, setViewed] = useState(false);
     return (
         <>
             <div className="movie-item" onClick={handleClick}>
-                <p>{title}</p>
                 <img src={`https://image.tmdb.org/t/p/w500${imgPath}`} alt={title}/>
+                <p>{title}</p>
                 <p>{voterAvg}</p>
+                <div className="buttonsDiv">
                 <button className="like-button" onClick={toggleLike}>
                 {liked ? (
                     <span className="heart-icon" style={heartStyle}>&#x2665;</span>
@@ -49,6 +52,7 @@ const [viewed, setViewed] = useState(false);
                 <button className="viewButton" onClick={toggleView}>
                     <img className="viewIcon" style={viewStyle} src={eyeIcon}/>
                 </button>
+                </div>
             </div>
         </>
     );

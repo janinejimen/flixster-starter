@@ -30,11 +30,14 @@ const App = () => {
       </div>
 
       <main>
-        <Sorting
-          movieList={movies}
-          setMovies={setMovies}
-          onChange={handleSortChange}
-          />
+        <div className="tempDiv">
+          <Sorting
+                movieList={movies}
+                setMovies={setMovies}
+                onChange={handleSortChange}
+                />
+        </div>
+        
         <MovieList
             filterQuery={filterQuery}
             searchQuery={searchQuery}
