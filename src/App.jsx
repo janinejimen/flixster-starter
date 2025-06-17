@@ -12,7 +12,6 @@ const App = () => {
   const [filterQuery, setFilterQuery] = useState('popularity.desc');
 
   const handleSortChange = (e) => {
-    console.log("e is:" , e.target.value)
     setFilterQuery(e.target.value);
   }
 

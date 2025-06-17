@@ -23,7 +23,6 @@ const MovieList = ({filterQuery, searchQuery}) => {
                     `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&sort_by=${filterQuery}&include_adult=false&page=${page}`
                 );
                 setMovies(data.results);
-                console.log(data)
             } catch (err) {
                 console.error("Error fetching the list: ", err);
             }
@@ -42,7 +41,6 @@ const MovieList = ({filterQuery, searchQuery}) => {
     if(searchQuery) {
         searchMovies(searchQuery);
     } else {
-        console.log("in else")
         fetchList();
     }
     }, [filterQuery,searchQuery, apiKey]);
@@ -56,7 +54,6 @@ const MovieList = ({filterQuery, searchQuery}) => {
             // https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${encodeURIComponent(query)}&page=${page}
             const {data} = await axios.get(`https://api.themoviedb.org/3/movie/${id}?api_key=${apiKey}`)
         setSelectedMovie(data);
-        console.log("selected movie: " + data);
         } catch (err) {
             console.error(`Error fetching`, err);
         }

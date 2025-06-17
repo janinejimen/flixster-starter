@@ -19,7 +19,6 @@ const SearchBar = ({currSearch, setCurrSearch}) => {
     };
 
     const handleEnter = (event) => {
-        console.log("enter key pressed");
         if(event.key === 'Enter') {
             searchClick();
         }
