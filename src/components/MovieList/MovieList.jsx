@@ -3,15 +3,16 @@ import axios from "axios";
 import MovieCard from '../MovieCard/MovieCard';
 
 const MovieList = ({searchQuery}) => {
-    const[movies, setMovies] = useState([]);
+    const[movies, setMovies] = useState([])
     const[selectedMovies, setSelectedMovie] = useState(null);
     const[showModal, setShowModal] = useState(false);
 
     useEffect ( () => {
         const fetchList = async() => {
+            const apiKey = import.meta.env.VITE_API_KEY
             try {
                 const { data } = await axios.get(
-                    "https://api.themoviedb.org/3/movie/popular?api_key=c356a35283f1d5c90c51bd354c741d8b"
+                    `https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}&include_adult=false`
                 );
                 setMovies(data.results);
             } catch (err) {
@@ -21,10 +22,28 @@ const MovieList = ({searchQuery}) => {
         fetchList();
     }, []);
 
+    useEffect ( () => {
+        const filterMovies = async (query) => {
+            const apiKey = import.meta.env.VITE_API_KEY
+        try {
+            const {data} = await axios.get( `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${query}&include_adult=false`);
+            setMovies(data.results);
+        } catch(err) {
+            console.error("WOMP WOMP", err);
+        }
+    };
+
+    if(searchQuery) {
+        filterMovies(searchQuery);
+    }
+    }, [searchQuery]);
+   
+
 
     return (
         <>
             <div className="movie-list">
+                
                 {movies.map ((m) => (
                     <MovieCard
                         key={m.id}

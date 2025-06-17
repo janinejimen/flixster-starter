@@ -1,4 +1,5 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import axios from "axios"
 import './App.css'
 import SearchBar from './components/SearchBar/SearchBar'
 import Sorting from './components/Sorting/Sorting'
@@ -8,6 +9,9 @@ const App = () => {
 
   const [movies, setMovies] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
+
+    console.log("movies in app: " + movies);
+
   return (
     <div className="App">
       <div className="App-header">
@@ -22,11 +26,13 @@ const App = () => {
       <main>
         <Sorting/>
         <MovieList
+            searchQuery={searchQuery}
         />
       </main>
       
     </div>
   )
+
 }
 
 export default App

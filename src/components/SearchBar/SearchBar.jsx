@@ -12,7 +12,7 @@ const SearchBar = ({currSearch, setCurrSearch}) => {
         <>
             <div className="search-div">
                 <input type="text" placeholder="Search" value={currSearch} onChange={updateSearch} className="search-bar"/>
-                <button className="search-button">SEARCH</button>
+                <button className="search-button" >SEARCH</button>
                 <button className="clear-button">CLEAR</button>
             </div>
         </>
