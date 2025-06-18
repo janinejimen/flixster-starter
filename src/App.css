@@ -8,7 +8,6 @@
   flex-direction: row;
   align-items: center;
   justify-content: space-evenly;
-  color: white;
   padding: 20px;
 }
 a {
@@ -16,11 +15,15 @@ a {
   color:white;
 }
 
-.mainDiv {
-  background-color: red;
-  width: 500px;
-  
+.banner {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  background-color: #d1e0ff;
+  height: 70px;
 }
+
 
 @media (max-width: 600px) {
   .movie-card {

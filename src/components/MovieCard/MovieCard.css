@@ -8,7 +8,8 @@
     padding: 1rem;
     cursor: pointer;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
-    width: 300px;
+    width: 80%;
+    height: 45vh;
 }
 
 .like-button img {
@@ -17,8 +18,8 @@ height: 24px;
 }
 
 .movie-item img {
-    height: 300px;
-    width: 200px;
+    height: 25vh;
+    width: 60%;
 }
 
 .buttonsDiv {

@@ -13,6 +13,7 @@ const App = () => {
   const [page, setPage] = useState(1);
 
   const handleSortChange = (e) => {
+    console.log(e.target.value);
     setFilterQuery(e.target.value);
   }
 
@@ -20,23 +21,27 @@ const App = () => {
     <div className="App">
       <div className="App-header">
           <h1> <a href="App.jsx">FLIXSTER</a></h1>
-          <SearchBar
+      </div>
+
+      <div className="banner">
+        <SearchBar
             currSearch={searchQuery}
             setCurrSearch={setSearchQuery}
             page={page}
             setPage={setPage}
           />
-          
-      </div>
 
-      <main>
-        <div className="tempDiv">
+          <div className="tempDiv">
           <Sorting
                 movieList={movies}
                 setMovies={setMovies}
                 onChange={handleSortChange}
                 />
         </div>
+      </div>
+
+      <main>
+        
         
         <MovieList
             filterQuery={filterQuery}

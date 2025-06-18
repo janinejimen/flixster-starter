@@ -38,8 +38,8 @@ const [viewed, setViewed] = useState(false);
         <>
             <div className="movie-item" onClick={handleClick}>
                 <img src={`https://image.tmdb.org/t/p/w500${imgPath}`} alt={title}/>
-                <p>{title}</p>
-                <p>{voterAvg}</p>
+                <h2>{title}</h2>
+                <p> ★{voterAvg}/10</p>
                 <div className="buttonsDiv">
                 <button className="like-button" onClick={toggleLike}>
                 {liked ? (

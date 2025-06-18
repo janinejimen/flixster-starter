@@ -1,20 +1,26 @@
 .search-button {
-    background-color: transparent;
+    background-color:#282c34;
+    margin-left: 20px;
     border: none;
 }
 
 .clear-button {
-    background-color: transparent;
+    background-color: #282c34;
+    margin-left: 20px;
     border: none;
 }
 
+.search-div {
+    color: black;
+}
+
+
 .search-bar {
-    background-color: transparent;
-    border: 2px solid white;
+    border: 2px solid rgb(0, 0, 0);
     border-radius: 10px;
     height: 25px;
     width: 250px;
-    color: white;
+    color: black;
 }
 
 

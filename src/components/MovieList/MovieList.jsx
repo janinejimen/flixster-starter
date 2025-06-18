@@ -9,7 +9,6 @@ const MovieList = ({filterQuery, searchQuery, page, setPage}) => {
     const[movies, setMovies] = useState([])
     const[selectedMovie, setSelectedMovie] = useState(null);
     const[showModal, setShowModal] = useState(false);
-    // const[page, setPage] = useState(1);
     const apiKey = import.meta.env.VITE_API_KEY
 
 
