@@ -17,7 +17,7 @@ const [viewed, setViewed] = useState(false);
     }
 
     const heartStyle = {
-        color: liked ? 'red' : 'white',
+        color: liked ? 'red' : 'gray',
         fontSize: '24px',
         cursor: 'pointer',
     };
