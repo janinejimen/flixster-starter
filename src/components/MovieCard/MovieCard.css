@@ -9,7 +9,7 @@
     cursor: pointer;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
     width: 70%;
-    height: 35vh;
+    height: 37vh;
 }
 .movie-item p {
     margin-top: 2px;
